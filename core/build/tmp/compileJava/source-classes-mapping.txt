@@ -1,0 +1,18 @@
+ru/itis/units/Tank.java
+ ru.itis.units.Tank
+ru/itis/Bullet.java
+ ru.itis.Bullet
+ru/itis/units/PlayerTank.java
+ ru.itis.units.PlayerTank
+ru/itis/TankGame.java
+ ru.itis.TankGame
+ru/itis/Weapon.java
+ ru.itis.Weapon
+ru/itis/emitters/BotEmitter.java
+ ru.itis.emitters.BotEmitter
+ru/itis/utils/Direction.java
+ ru.itis.utils.Direction
+ru/itis/emitters/BulletEmitter.java
+ ru.itis.emitters.BulletEmitter
+ru/itis/units/BotTank.java
+ ru.itis.units.BotTank

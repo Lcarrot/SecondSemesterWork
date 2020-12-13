@@ -1,0 +1,2 @@
+ru/itis/desktop/DesktopLauncher.java
+ ru.itis.desktop.DesktopLauncher
