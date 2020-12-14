@@ -1,14 +1,16 @@
 # packages #
-**/.idea/
+
+.idea/
 .git/
 **/out/
 **/target/
 **/lib/
 **/resources/
-**/gradle/
-**/.gradle/
-
+gradle/
+.gradle/
+**/build/
 # file types #
+
 *.iml
 *.class
 *.properties
@@ -16,4 +18,5 @@
 *.bat
 
 # files #
+
 gradlew

@@ -1,6 +1,6 @@
 package game.net.network.connection;
 
-public interface Sending<T> {
+public interface Sender<T> {
 
     void send(T message);
 }

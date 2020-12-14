@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-public class TCPConnection extends AbstractConnection<Message, TCPConnection> implements Runnable, Sending<Message> {
+public class TCPConnection extends AbstractConnection<Message, TCPConnection> implements Runnable, Sender<Message> {
 
     private ObjectInputStream in;
     private ObjectOutputStream out;
@@ -39,7 +39,7 @@ public class TCPConnection extends AbstractConnection<Message, TCPConnection> im
         while (isAlive) {
             try {
                 if (in.available() != 0) {
-                    listener.receiveContent((Message) in.readObject());
+                    listener.receive((Message) in.readObject());
                 }
                 else {
                     Thread.sleep(200);
