@@ -4,9 +4,9 @@
 **/out/
 **/target/
 **/lib/
-**/resources/
 **/gradle/
 **/.gradle/
+**/build/
 
 # file types #
 *.iml
