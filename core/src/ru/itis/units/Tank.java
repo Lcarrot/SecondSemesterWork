@@ -1,70 +1,54 @@
 package ru.itis.units;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import ru.itis.TankGame;
 import ru.itis.Weapon;
+import ru.itis.utils.TankOwner;
 
 public abstract class Tank {
     TankGame game;
+    TankOwner ownerType;
     Weapon weapon;
     TextureRegion texture;
-    TextureRegion hpBarTexture;
+    TextureRegion textureHp;
     Vector2 position;
-    float speed;
-    float angle;
-    int width;
-    int height;
-    float fireTimer;
+    Circle hitBox;
     int hp;
     int hpMax;
-    Circle hitBox;
+    float speed;
+    float angle;
+    float fireTimer;
+    int width;
+    int height;
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public TankOwner getOwnerType() {
+        return ownerType;
+    }
+
+    public Circle getHitBox() {
+        return hitBox;
+    }
 
     public Tank(TankGame game) {
         this.game = game;
     }
 
-    public abstract void destroy();
-
     public void render(SpriteBatch batch) {
         batch.draw(texture, position.x - width / 2, position.y - height / 2, width / 2, height / 2, width, height, 1, 1, angle);
         if (hp < hpMax) {
             batch.setColor(0, 0, 0, 1);
-            batch.draw(hpBarTexture, position.x - width / 2 - 2, position.y + height / 2 - 4, 44, 12);
+            batch.draw(textureHp, position.x - width / 2 - 2, position.y + height / 2 - 10, 44, 12);
             batch.setColor(1, 0, 0, 1);
-            batch.draw(hpBarTexture, position.x - width / 2, position.y + height / 2 - 2, ((float) hp / hpMax) * 40, 8);
+            batch.draw(textureHp, position.x - width / 2, position.y + height / 2 - 8, ((float) hp / hpMax) * 40, 8);
             batch.setColor(1, 1, 1, 1);
-        }
-    }
-
-    public void update(float dt) {
-        fireTimer += dt;
-        if (position.x < 0.f) {
-            position.x = 0.f;
-        }
-        if (position.x > Gdx.graphics.getWidth()) {
-            position.x = Gdx.graphics.getWidth();
-        }
-        if (position.y < 0.f) {
-            position.y = 0.f;
-        }
-        if (position.y > Gdx.graphics.getHeight()) {
-            position.y = Gdx.graphics.getHeight();
-        }
-        hitBox.setPosition(position);
-    }
-
-
-    public void fire(float dt) {
-        if (fireTimer >= weapon.getFirePeriod()) {
-            fireTimer = 0.f;
-            float angleRad = (float) Math.toRadians(angle);
-            game.getBulletEmitter().activate(position.x, position.y, 320.f * (float) Math.cos(angleRad), 320.f * (float) Math.sin(angleRad));
         }
     }
 
@@ -75,11 +59,30 @@ public abstract class Tank {
         }
     }
 
-    public Circle getHitBox() {
-        return hitBox;
+    public abstract void destroy();
+
+    public void update(float dt) {
+        fireTimer += dt;
+        if (position.x < 0.0f) {
+            position.x = 0.0f;
+        }
+        if (position.x > Gdx.graphics.getWidth()) {
+            position.x = Gdx.graphics.getWidth();
+        }
+        if (position.y < 0.0f) {
+            position.y = 0.0f;
+        }
+        if (position.y > Gdx.graphics.getHeight()) {
+            position.y = Gdx.graphics.getHeight();
+        }
+        hitBox.setPosition(position);
     }
 
-    public Weapon getWeapon() {
-        return weapon;
+    public void fire() {
+        if (fireTimer >= weapon.getFirePeriod()) {
+            fireTimer = 0.0f;
+            float angleRad = (float) Math.toRadians(angle);
+            game.getBulletEmitter().activate(this, position.x, position.y, 320.0f * (float) Math.cos(angleRad), 320.0f * (float) Math.sin(angleRad), weapon.getDamage());
+        }
     }
 }

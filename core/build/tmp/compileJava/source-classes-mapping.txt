@@ -2,6 +2,8 @@ ru/itis/units/Tank.java
  ru.itis.units.Tank
 ru/itis/Bullet.java
  ru.itis.Bullet
+ru/itis/utils/TankOwner.java
+ ru.itis.utils.TankOwner
 ru/itis/units/PlayerTank.java
  ru.itis.units.PlayerTank
 ru/itis/TankGame.java
