@@ -5,7 +5,6 @@
 **/out/
 **/target/
 **/lib/
-**/resources/
 gradle/
 .gradle/
 **/build/
